@@ -1,0 +1,30 @@
+<ul class="task-list">
+    {% for task in tasks %}
+    <li class="task-item {% if task.completed %}completed{% endif %} {% if task.important %}important{% endif %}">
+        <div class="task-checkbox">
+            <form class="toggle-form" action="{{ url_for('toggle_task', task_id=task.id) }}" method="POST">
+                <button type="submit" class="checkbox-btn {% if task.completed %}checked{% endif %}">
+                    {% if task.completed %}
+                    <i class="fas fa-check"></i>
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+        
+        <div class="task-content">
+            <span class="task-title">{{ task.title }}</span>
+            {% if task.due_date %}
+            <span class="task-due">{{ task.due_date.strftime('%b %d') }}</span>
+            {% endif %}
+        </div>
+        
+        <div class="task-actions">
+            <form class="important-form" action="{{ url_for('toggle_important', task_id=task.id) }}" method="POST">
+                <button type="submit" class="btn-icon">
+                    <i class="far fa-star {% if task.important %}important{% endif %}"></i>
+                </button>
+            </form>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

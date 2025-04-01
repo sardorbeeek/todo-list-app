@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="tasks-header">
+    <h1>{{ current_list.name }}</h1>
+    <button class="btn btn-primary" id="new-task-btn">
+        <i class="fas fa-plus"></i> New Task
+    </button>
+</div>
+
+<div class="tasks-container">
+    {% include 'partials/task_list.html' %}
+</div>
+
+{% include 'partials/task_modal.html' %}
+{% endblock %}

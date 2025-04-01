@@ -1,0 +1,27 @@
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <h2>Flask To-Do</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+        <ul>
+            {% for list in lists %}
+            <li class="{% if list.id == current_list.id %}active{% endif %}">
+                <a href="{{ url_for('view_list', list_id=list.id) }}">
+                    <i class="far fa-list-alt"></i>
+                    <span>{{ list.name }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <div class="add-list-form">
+            <form action="{{ url_for('add_list') }}" method="POST">
+                <input type="text" name="name" placeholder="New list name" required>
+                <button type="submit" class="btn-icon">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
+</aside>
